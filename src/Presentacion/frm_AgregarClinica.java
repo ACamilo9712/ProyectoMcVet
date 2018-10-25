@@ -5,17 +5,27 @@
  */
 package Presentacion;
 
+import Actores.CentralClinica;
+import Actores.Establecimiento;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Camilo
  */
+
 public class frm_AgregarClinica extends javax.swing.JFrame {
 
+    frm_RedReferencia red;
+    CentralClinica cl;
+    Establecimiento e;
     /**
      * Creates new form frm_AgregarClinica
      */
-    public frm_AgregarClinica() {
+    public frm_AgregarClinica(CentralClinica cl,frm_RedReferencia red) {
         initComponents();
+        this.cl=cl;
+        this.red=red;       
     }
 
     /**
@@ -33,7 +43,7 @@ public class frm_AgregarClinica extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtTelefonos = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtPagina = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -48,12 +58,17 @@ public class frm_AgregarClinica extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombre");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtPagina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtPaginaActionPerformed(evt);
             }
         });
 
@@ -81,7 +96,7 @@ public class frm_AgregarClinica extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtTelefonos, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPagina, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNombre))
                 .addGap(66, 66, 66))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -114,9 +129,9 @@ public class frm_AgregarClinica extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtPagina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
@@ -127,14 +142,25 @@ public class frm_AgregarClinica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaginaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtPaginaActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
+        e = new Establecimiento(txtNombre.getText(),txtDireccion.getText(), Integer.parseInt(txtTelefonos.getText()),txtPagina.getText());
+        this.cl.agregarAlComienzo(this.e);
+        JOptionPane.showMessageDialog(this, "La nueva Clínica ha sido agregada");
+        dispose();
+        this.red.setLocationRelativeTo(null);
+        this.red.setVisible(true);        
         
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:    
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,11 +190,11 @@ public class frm_AgregarClinica extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frm_AgregarClinica().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -178,9 +204,9 @@ public class frm_AgregarClinica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPagina;
     private javax.swing.JTextField txtTelefonos;
     // End of variables declaration//GEN-END:variables
 }

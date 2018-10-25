@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import Actores.CentralClinica;
 import Actores.CentralRedReferencia;
 import Actores.Establecimiento;
 import Actores.Pintar;
@@ -20,10 +21,12 @@ import javax.swing.JOptionPane;
 
 public class frm_RedReferencia extends javax.swing.JFrame {
 
+    
+    CentralClinica  cl;
     Pintar pintar = new Pintar();
     CentralRedReferencia arboles = new CentralRedReferencia();
-    Establecimiento establecimiento = new Establecimiento();
-    frm_AgregarClinica nuevaClinica = new frm_AgregarClinica();
+    frm_AgregarClinica nuevaClinica = new frm_AgregarClinica(this.cl, this);
+    Establecimiento e;
     
     
     public void R_repaint(int tope, CentralRedReferencia arboles) {//pinta lo q esta antes en el panel 
@@ -49,7 +52,7 @@ public class frm_RedReferencia extends javax.swing.JFrame {
             }
         }
         for (int j = 0; j < i; j++) {
-            Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), String.valueOf(arboles.getNombre(j)));
+            Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), String.valueOf(arboles.getNombre(j)+e.getNombreEstablecimiento()));
         }
     }
 
@@ -96,7 +99,7 @@ public class frm_RedReferencia extends javax.swing.JFrame {
                     Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.orange);
                     if (id == id2) {// si id == id2 por q se volvio a dar click sobre el mismos nodo, se cancela el click anterio
                         n = 0;
-                        Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(id), arboles.getCordeY(id), String.valueOf(arboles.getNombre(id)));
+                        Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(id), arboles.getCordeY(id), String.valueOf(e.getNombreEstablecimiento()));
                         id = -1;
                         id2 = -1;
                     }
@@ -105,7 +108,9 @@ public class frm_RedReferencia extends javax.swing.JFrame {
                 return true;
             }
         }
-          nuevaClinica.setVisible(true);
+        frm_AgregarClinica form = new frm_AgregarClinica(this.cl, this);
+        form.toFront();
+        form.setVisible(true);        
         return false;
     }
 
@@ -124,14 +129,16 @@ public class frm_RedReferencia extends javax.swing.JFrame {
                 Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.GREEN);
                 break;
             }
-
+          
         }
+        this.cl.mostrarClientes();
       
 
     }
 
-    public frm_RedReferencia() {
+    public frm_RedReferencia(CentralClinica cl) {
         initComponents();
+        this.cl=cl;
     }
 
     Frame frame;
@@ -339,6 +346,7 @@ public class frm_RedReferencia extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
+ 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int Eliminar = Integer.parseInt(jTextField2.getText());

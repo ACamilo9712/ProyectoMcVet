@@ -22,6 +22,8 @@ public class frmmenu_principal extends javax.swing.JFrame {
     Scanner sc = new Scanner(System.in);
     frmgestion_clientes form;
     frmgestion_inventario frmInventario;
+    frm_RedReferencia red;
+    CentralRedReferencia r;
 
     private JInternalFrame escritorio;
 
@@ -30,7 +32,7 @@ public class frmmenu_principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.form = new frmgestion_clientes(new CentralCliente());
         this.frmInventario = new frmgestion_inventario(new CentralInventario());
-
+        this.red = new frm_RedReferencia(new CentralClinica());
     }
 
     /**
@@ -129,10 +131,9 @@ public class frmmenu_principal extends javax.swing.JFrame {
     private void btngestionRedReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngestionRedReferenciaActionPerformed
         // TODO add your handling code here:
         
-        frm_RedReferencia frm_red = new frm_RedReferencia();
-        frm_red.setLocationRelativeTo(null);
-        frm_red.setVisible(true);
-        frm_red.show();
+       this.red.setLocationRelativeTo(null);
+       this.red.setVisible(true);      
+       this.red.show();       
 
     }//GEN-LAST:event_btngestionRedReferenciaActionPerformed
 
