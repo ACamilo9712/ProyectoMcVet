@@ -26,24 +26,24 @@ public class frmgestion_inventario extends javax.swing.JFrame {
         initComponents();
         this.ci = ci;
         this.inventario = inventario;
+        this.ci.tabla = TablaInventario;
     }
 
-    public void llenarTabla() {
-        Inventario raiz = this.ci.inorder(this.ci.raiz);
-        String[][] datos = new String[15][5];
-        String[] Columnas = {"Codigo", "Nombre", "Descripcion", "Presentacion", "Unid.en existencia"};
-        int i = 0;
-        int j = 0;
-        while (raiz != null) {
-            datos[i][j] = String.valueOf(raiz.getContenido());
-            datos[i][(j + 1)] = raiz.getNombre();
-            datos[i][(j + 2)] = raiz.getDescripcion();
-            datos[i][(j + 3)] = raiz.getPresentacion();
-            datos[i][(j + 4)] = String.valueOf(raiz.getUnidadExistencia());
-            raiz = this.ci.inorder(this.inventario);
-            i += 1;
-        }
-        this.TablaInventario.setModel(new DefaultTableModel(datos, new String[]{"Codigo", "Nombre", "Descripcion", "Presentacion", "Unid. en existencia"}));
+    public void limpiarTabla() {
+        DefaultTableModel model = (DefaultTableModel) TablaInventario.getModel();
+        model.setRowCount(0);
+    }
+
+    public void llenarTablaInorder() {
+        ci.inorder(ci.raiz);
+    }
+
+    public void llenarTablaPreorder() {
+        ci.preorder(ci.raiz);
+    }
+
+    public void llenarTablaPostorder() {
+        ci.postorder(ci.raiz);
     }
 
     /**
@@ -108,6 +108,7 @@ public class frmgestion_inventario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaInventario.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(TablaInventario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,13 +151,16 @@ public class frmgestion_inventario extends javax.swing.JFrame {
 
         if (cbxOrden.getSelectedItem().toString() == "Inorder") {
             ci.inorder(inventario);
-            System.out.println("Entró a Inorder");
+            limpiarTabla();
+            llenarTablaInorder();
         }
         if (cbxOrden.getSelectedItem().toString() == "Preorder") {
-            System.out.println("Entró a preorder");
+            limpiarTabla();
+            llenarTablaPreorder();
         }
         if (cbxOrden.getSelectedItem().toString() == "Postorder") {
-            System.out.println("Entró a Postorder");
+            limpiarTabla();
+            llenarTablaPostorder();
         }
 
 

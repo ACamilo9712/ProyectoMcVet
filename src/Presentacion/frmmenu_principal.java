@@ -27,6 +27,7 @@ public class frmmenu_principal extends javax.swing.JFrame {
 
     public frmmenu_principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.form = new frmgestion_clientes(new CentralCliente());
         this.frmInventario = new frmgestion_inventario(new CentralInventario());
 

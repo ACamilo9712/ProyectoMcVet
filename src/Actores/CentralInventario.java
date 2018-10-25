@@ -1,9 +1,13 @@
 package Actores;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 public class CentralInventario {
 
     public Inventario raiz;
-
+    public JTable tabla;
+    
     public void insertar(Inventario raiz, Inventario n) {
         if (this.raiz != null) {
             if (n.contenido < raiz.contenido) {
@@ -26,6 +30,8 @@ public class CentralInventario {
 
     public void visitar(Inventario raiz) {
         System.out.println(raiz.contenido);
+        DefaultTableModel model = ( DefaultTableModel)tabla.getModel();              
+        model.addRow(new Object[]{raiz.contenido,raiz.getNombre(),raiz.getDescripcion(),raiz.getPresentacion(),raiz.getUnidadExistencia()});
     }
 
     public void preorder(Inventario raiz) {

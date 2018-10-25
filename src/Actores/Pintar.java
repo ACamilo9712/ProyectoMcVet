@@ -23,8 +23,8 @@ public class Pintar {
 
     public static void pintarCirculo(Graphics g, int x, int y, String n) {
         //g.drawOval(x, y-10, 20, 20);
-        ((Graphics2D) g).setColor(Color.blue);
-        ((Graphics2D) g).setStroke(new BasicStroke(4));//leda el grosor al circulo        
+        ((Graphics2D) g).setColor(Color.GREEN);
+        ((Graphics2D) g).setStroke(new BasicStroke(5));//leda el grosor al circulo        
         ((Graphics2D) g).fillOval(x, y, 15, 15);
         ((Graphics2D) g).setColor(Color.BLACK);
         ((Graphics2D) g).drawOval(x, y, 15, 15);
