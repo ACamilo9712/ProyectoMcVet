@@ -21,14 +21,12 @@ import javax.swing.JOptionPane;
 
 public class frm_RedReferencia extends javax.swing.JFrame {
 
-    
-    CentralClinica  cl;
+    CentralClinica cl;
     Pintar pintar = new Pintar();
     CentralRedReferencia arboles = new CentralRedReferencia();
     frm_AgregarClinica nuevaClinica = new frm_AgregarClinica(this.cl, this);
     Establecimiento e;
-    
-    
+
     public void R_repaint(int tope, CentralRedReferencia arboles) {//pinta lo q esta antes en el panel 
         for (int j = 0; j < tope; j++) {
             for (int k = 0; k < tope; k++) {
@@ -52,7 +50,7 @@ public class frm_RedReferencia extends javax.swing.JFrame {
             }
         }
         for (int j = 0; j < i; j++) {
-            Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), String.valueOf(arboles.getNombre(j)+e.getNombreEstablecimiento()));
+            Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), String.valueOf(arboles.getNombre(j) + e.getNombreEstablecimiento()));
         }
     }
 
@@ -110,7 +108,10 @@ public class frm_RedReferencia extends javax.swing.JFrame {
         }
         frm_AgregarClinica form = new frm_AgregarClinica(this.cl, this);
         form.toFront();
-        form.setVisible(true);        
+        form.setLocationRelativeTo(null);
+        form.setVisible(true);
+        System.out.println(arboles.getmAdyacencia(i, i));
+
         return false;
     }
 
@@ -129,16 +130,12 @@ public class frm_RedReferencia extends javax.swing.JFrame {
                 Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.GREEN);
                 break;
             }
-          
         }
-        this.cl.mostrarClientes();
-      
-
+        JOptionPane.showMessageDialog(null, this.cl.mostrarClientes());
     }
-
     public frm_RedReferencia(CentralClinica cl) {
         initComponents();
-        this.cl=cl;
+        this.cl = cl;
     }
 
     Frame frame;
@@ -278,6 +275,7 @@ public class frm_RedReferencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+
         int xxx, yyy;
         xxx = evt.getX();
         yyy = evt.getY();
@@ -285,6 +283,7 @@ public class frm_RedReferencia extends javax.swing.JFrame {
             clicIzqSobreNodo(xxx, yyy);
 
         } else {
+
             if (!cicDerechoSobreNodo(xxx, yyy)) {// si  clik sobre  nodo es falso entra
                 if (tope < 50) {
                     arboles.setCordeX(tope, xxx);
@@ -346,7 +345,7 @@ public class frm_RedReferencia extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
- 
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int Eliminar = Integer.parseInt(jTextField2.getText());
@@ -419,7 +418,7 @@ public class frm_RedReferencia extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public boolean NodosEnElLienzo(int caja) {       
+    public boolean NodosEnElLienzo(int caja) {
         for (int j = 0; j < tope; j++) {
             if (arboles.getNombre(j) == caja) {
                 return true;

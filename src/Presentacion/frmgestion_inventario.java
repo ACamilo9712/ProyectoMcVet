@@ -99,17 +99,18 @@ public class frmgestion_inventario extends javax.swing.JFrame {
 
         TablaInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Identificador", "Nombre", "Descripcion", "Presentacion", "Unidades Existentes"
             }
         ));
         TablaInventario.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(TablaInventario);
+        TablaInventario.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,6 +172,8 @@ public class frmgestion_inventario extends javax.swing.JFrame {
         Inventario i = null;
         frmagg_Inventario form = new frmagg_Inventario(this.ci, this);
         form.toFront();
+        form.setTitle("Agregar Producto");
+        form.setLocationRelativeTo(null);
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAgregarInvActionPerformed
@@ -179,6 +182,8 @@ public class frmgestion_inventario extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmbuscar_inventario form = new frmbuscar_inventario(this.ci, this);
         form.toFront();
+        form.setTitle("Buscar Producto");
+        form.setLocationRelativeTo(null);
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnBuscarInvActionPerformed
@@ -187,6 +192,8 @@ public class frmgestion_inventario extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmeliminar_inventario form = new frmeliminar_inventario(this);
         form.toFront();
+        form.setTitle("Eliminar Producto");
+        form.setLocationRelativeTo(null);
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnEliminarInvActionPerformed

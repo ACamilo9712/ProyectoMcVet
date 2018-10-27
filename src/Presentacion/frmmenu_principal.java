@@ -33,6 +33,7 @@ public class frmmenu_principal extends javax.swing.JFrame {
         this.form = new frmgestion_clientes(new CentralCliente());
         this.frmInventario = new frmgestion_inventario(new CentralInventario());
         this.red = new frm_RedReferencia(new CentralClinica());
+        this.setTitle("Pagina Principal");
     }
 
     /**
@@ -117,6 +118,7 @@ public class frmmenu_principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.form.setLocationRelativeTo(null);
         this.form.setVisible(true);
+        this.form.setTitle("Gestión de Clientes");
         this.form.show();
 
     }//GEN-LAST:event_btngestion_clientesActionPerformed
@@ -125,6 +127,7 @@ public class frmmenu_principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.frmInventario.setLocationRelativeTo(null);
         this.frmInventario.setVisible(true);
+        this.frmInventario.setTitle("Gestión de Inventario");
         this.frmInventario.show();
     }//GEN-LAST:event_btnestionInventarioActionPerformed
 
@@ -133,6 +136,7 @@ public class frmmenu_principal extends javax.swing.JFrame {
         
        this.red.setLocationRelativeTo(null);
        this.red.setVisible(true);      
+       this.red.setTitle("Red de Referencia");
        this.red.show();       
 
     }//GEN-LAST:event_btngestionRedReferenciaActionPerformed

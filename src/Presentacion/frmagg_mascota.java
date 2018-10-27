@@ -175,7 +175,9 @@ public class frmagg_mascota extends javax.swing.JFrame {
         retornarMascota();
         Mascota m = new Mascota(Integer.parseInt(this.txtidentificacion.getText()), this.txtnombre.getText(), this.txtraza.getText(), this.txtColor.getText());
         frmagg_mascota2 form = new frmagg_mascota2(m, this.cm, this.frmMascotas);
-        form.toFront();
+        form.toFront();        
+        form.setTitle("Agregar Mascota");
+        form.setLocationRelativeTo(null);
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btncontinuarActionPerformed

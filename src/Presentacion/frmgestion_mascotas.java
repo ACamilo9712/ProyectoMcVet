@@ -150,6 +150,9 @@ public class frmgestion_mascotas extends javax.swing.JFrame {
         Mascota m = null;
         frmagg_mascota form = new frmagg_mascota(this.cliente.getCentralMascota(), this);
         form.toFront();
+        form.setLocationRelativeTo(null);
+        form.setTitle("Agregar Mascota");
+        form.setLocationRelativeTo(null);
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnagregarActionPerformed
@@ -158,6 +161,8 @@ public class frmgestion_mascotas extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmbuscar_mascota form = new frmbuscar_mascota(this.cliente.getCentralMascota(), this);
         form.toFront();
+        form.setLocationRelativeTo(null);
+        form.setTitle("Buscar Mascota");
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnbuscarActionPerformed
@@ -166,6 +171,8 @@ public class frmgestion_mascotas extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmeliminar_mascota form = new frmeliminar_mascota(this.cliente.getCentralMascota(), this);
         form.toFront();
+        form.setLocationRelativeTo(null);
+        form.setTitle("Eliminar Mascota");
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btneliminarActionPerformed

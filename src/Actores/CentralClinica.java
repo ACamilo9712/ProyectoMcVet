@@ -16,7 +16,6 @@ public class CentralClinica {
             System.out.println(actual.getNombreEstablecimiento() + actual.getDireccion());
             actual = actual.getSiguiente();
         }
-        return primero.getNombreEstablecimiento();
+        return primero.getNombreEstablecimiento() +" Ubicada en "+ primero.getDireccion()+ " con teléfono "+ primero.getTelefono()+ " y con pagina web "+primero.getPaginaWeb();
     }
-
 }

@@ -162,8 +162,9 @@ public class frmagg_Cliente extends javax.swing.JFrame {
         Cliente c = new Cliente(Integer.parseInt(this.txtID.getText()), this.txtnombre.getText(), this.txtdireccion.getText(), this.txttelefono.getText(), new CentralMascota());
 
         frmaggcliente2 form = new frmaggcliente2(c, this.cc, this.frmClientes);
-
+        form.setLocationRelativeTo(null);
         form.toFront();
+        form.setTitle("Agregar Cliente");
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btncontinuarActionPerformed

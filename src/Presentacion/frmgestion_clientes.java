@@ -158,7 +158,9 @@ public class frmgestion_clientes extends javax.swing.JFrame {
         
         frmagg_Cliente form = new frmagg_Cliente(this.cc, this);
         form.toFront();
+        form.setTitle("Agregar Clientes");
         form.setVisible(true);
+        form.setLocationRelativeTo(null);
         dispose();
     }//GEN-LAST:event_btnagregarActionPerformed
 
@@ -166,15 +168,18 @@ public class frmgestion_clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmbuscar_cliente form = new frmbuscar_cliente(this.cc, this);
         form.toFront();
+        form.setTitle("Bucar Clientes");
         form.setVisible(true);
+        form.setLocationRelativeTo(null);
         dispose();
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
-
         frmeliminar_cliente form = new frmeliminar_cliente(this.cc, this);
         form.toFront();
+        form.setTitle("Eliminar Clientes");
+        form.setLocationRelativeTo(null);
         form.setVisible(true);
         dispose();
     }//GEN-LAST:event_btneliminarActionPerformed
@@ -189,7 +194,9 @@ public class frmgestion_clientes extends javax.swing.JFrame {
         Cliente cliente = cc.buscarCliente(Integer.valueOf(id));
         frmgestion_mascotas form = new frmgestion_mascotas(cliente);
         form.toFront();
+        form.setTitle("Gestión de Mascotas");
         form.setVisible(true);
+        form.setLocationRelativeTo(null);
         dispose();
     }//GEN-LAST:event_btnver_mascotasActionPerformed
 
