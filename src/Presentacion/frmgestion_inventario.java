@@ -190,7 +190,7 @@ public class frmgestion_inventario extends javax.swing.JFrame {
 
     private void btnEliminarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInvActionPerformed
         // TODO add your handling code here:
-        frmeliminar_inventario form = new frmeliminar_inventario(this);
+        frmeliminar_inventario form = new frmeliminar_inventario(this, this.ci);
         form.toFront();
         form.setTitle("Eliminar Producto");
         form.setLocationRelativeTo(null);

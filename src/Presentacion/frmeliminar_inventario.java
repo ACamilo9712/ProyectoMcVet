@@ -5,6 +5,9 @@
  */
 package Presentacion;
 
+import Actores.CentralInventario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Camilo
@@ -13,12 +16,14 @@ public class frmeliminar_inventario extends javax.swing.JFrame {
 
     
      frmgestion_inventario frmInventario;
+     CentralInventario ci;
     /**
      * Creates new form frmeliminar_inventario
      */
-    public frmeliminar_inventario( frmgestion_inventario frmInventario) {
+    public frmeliminar_inventario( frmgestion_inventario frmInventario, CentralInventario ci) {
         initComponents();
         this.frmInventario= frmInventario;
+        this.ci=ci;
     }
 
     /**
@@ -47,6 +52,11 @@ public class frmeliminar_inventario extends javax.swing.JFrame {
         });
 
         btnEliminarInventario.setText("Eliminar");
+        btnEliminarInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarInventarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -73,7 +83,7 @@ public class frmeliminar_inventario extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarEliInv)
                     .addComponent(btnEliminarInventario))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,6 +105,16 @@ public class frmeliminar_inventario extends javax.swing.JFrame {
         dispose();
         this.frmInventario.setVisible(true);
     }//GEN-LAST:event_btnCancelarEliInvActionPerformed
+
+    private void btnEliminarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInventarioActionPerformed
+        // TODO add your handling code here:
+        ci.borrar(Integer.parseInt(jTextField1.getText()));
+        dispose();
+        JOptionPane.showMessageDialog(this.rootPane, "El Producto ha sido Eliminado");        
+        this.frmInventario.setVisible(true);
+        this.frmInventario.limpiarTabla();
+        this.frmInventario.llenarTablaInorder();
+    }//GEN-LAST:event_btnEliminarInventarioActionPerformed
 
     /**
      * @param args the command line arguments

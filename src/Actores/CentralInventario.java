@@ -7,7 +7,7 @@ public class CentralInventario {
 
     public Inventario raiz;
     public JTable tabla;
-    
+
     public void insertar(Inventario raiz, Inventario n) {
         if (this.raiz != null) {
             if (n.contenido < raiz.contenido) {
@@ -30,8 +30,8 @@ public class CentralInventario {
 
     public void visitar(Inventario raiz) {
         System.out.println(raiz.contenido);
-        DefaultTableModel model = ( DefaultTableModel)tabla.getModel();              
-        model.addRow(new Object[]{raiz.contenido,raiz.getNombre(),raiz.getDescripcion(),raiz.getPresentacion(),raiz.getUnidadExistencia()});
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.addRow(new Object[]{raiz.contenido, raiz.getNombre(), raiz.getDescripcion(), raiz.getPresentacion(), raiz.getUnidadExistencia()});
     }
 
     public void preorder(Inventario raiz) {
@@ -47,7 +47,7 @@ public class CentralInventario {
             inorder(raiz.hijoHizquierdo);
             visitar(raiz);
             inorder(raiz.hijoDerecho);
-        }       
+        }
         return raiz;
     }
 
@@ -69,12 +69,52 @@ public class CentralInventario {
         }
         return raiz;
     }
-    
-    public Inventario Eliminar(int contenido)
-    {
-   
-    
+
+    public Inventario Eliminar(int contenido, Inventario raiz) {
+
         return null;
+    }
+
+    public void borrar(int elemento) { //  //recive el item que quiere ser borrado
+        raiz = borrar(raiz, elemento); // llama a la funcion recursiva(root es el nombre de mi nodo raiz)
+    }
+
+    private Inventario borrar(Inventario raiz, int elemento) {
+        if (raiz.contenido == elemento) { // caso base en el que el nodo r es el que se desea borrar
+            if (raiz.hijoDerecho == null && raiz.hijoHizquierdo == null) {  // caso a en el que el nodo es hoja
+                raiz = null;
+                return raiz;
+            }
+            if (raiz.hijoDerecho == null) {  // caso b, tiene un solo hijo(izquierdo)
+                raiz = raiz.hijoHizquierdo;
+                return raiz;    // ahora el hijo ocupa el lugar del padre y salimos del metodo
+            }
+
+            if (raiz.hijoHizquierdo == null) {  // caso b, tiene un solo hijo(derecho)
+                raiz = raiz.hijoDerecho;
+                return raiz;
+            }
+            //caso c; tiene dos hijos
+            raiz.contenido = encontrarMaximo(raiz.hijoHizquierdo); // sera igual al nodo de mayor valor en el sub-arbol izquierdo
+            return raiz;//el nodo igualado (de mayor valor) se debe eliminar para que no quede repetido
+        }
+         if(elemento > raiz.contenido){ //si el elemento buscado es mayor al del nodo actual
+          raiz.hijoDerecho = borrar(raiz.hijoDerecho, elemento); 
+          return raiz; //lo busca recursivamente en los nodo &quot;mayores&quot;
+       }      
+        //ultima opcion: que el elemento este en la izquierda
+        raiz.hijoHizquierdo = borrar(raiz.hijoHizquierdo, elemento);
+        return raiz;
+    }
+
+//funcion que encuentra el maximo
+    private Integer encontrarMaximo(Inventario raiz) {
+        if (raiz.hijoDerecho == null) //si no hay un nodo con mayor valor retorna el valor del nodo actual
+        {
+            return raiz.contenido;
+        }
+        // sigue buscando en los nodos de mayor valor
+        return encontrarMaximo(raiz.hijoDerecho);
     }
     /*
     public Node delete(Integer value) {
