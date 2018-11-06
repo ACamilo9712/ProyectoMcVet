@@ -107,8 +107,5 @@ public class Establecimiento {
 
     public void setSiguiente(Establecimiento siguiente) {
         this.siguiente = siguiente;
-    }
-    
-    
-    
+    }            
 }
