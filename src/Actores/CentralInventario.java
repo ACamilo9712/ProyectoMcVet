@@ -96,15 +96,18 @@ public class CentralInventario {
             }
             //caso c; tiene dos hijos
             raiz.contenido = encontrarMaximo(raiz.hijoHizquierdo); // sera igual al nodo de mayor valor en el sub-arbol izquierdo
+            raiz = ajuste(raiz, raiz.hijoHizquierdo, raiz);
             return raiz;//el nodo igualado (de mayor valor) se debe eliminar para que no quede repetido
         }
-         if(elemento > raiz.contenido){ //si el elemento buscado es mayor al del nodo actual
-          raiz.hijoDerecho = borrar(raiz.hijoDerecho, elemento); 
-          return raiz; //lo busca recursivamente en los nodo &quot;mayores&quot;
-       }      
-        //ultima opcion: que el elemento este en la izquierda
-        raiz.hijoHizquierdo = borrar(raiz.hijoHizquierdo, elemento);
-        return raiz;
+        if (elemento > raiz.contenido) { //si el elemento buscado es mayor al del nodo actual
+            raiz.hijoDerecho = borrar(raiz.hijoDerecho, elemento);
+            return raiz; //lo busca recursivamente en los nodo &quot;mayores&quot;
+        }
+        
+            //ultima opcion: que el elemento este en la izquierda
+            raiz.hijoHizquierdo = borrar(raiz.hijoHizquierdo, elemento);
+            return raiz;
+       
     }
 
 //funcion que encuentra el maximo
@@ -115,6 +118,25 @@ public class CentralInventario {
         }
         // sigue buscando en los nodos de mayor valor
         return encontrarMaximo(raiz.hijoDerecho);
+    }
+
+    private Inventario ajuste(Inventario padre, Inventario hijo, Inventario ances) {
+        if (hijo.hijoDerecho == null) {
+            if (padre.equals(ances)) {
+                padre.hijoHizquierdo = hijo.hijoHizquierdo;
+                return padre;
+            }
+            padre.hijoDerecho = hijo.hijoHizquierdo;
+            return padre;
+        }
+        // sigue buscando en los nodos de mayor valor
+        hijo = ajuste(hijo, hijo.hijoDerecho, ances);
+        if (padre.equals(ances)) {
+            padre.hijoHizquierdo = hijo;
+        } else {
+            padre.hijoDerecho = hijo;
+        }
+        return padre;
     }
     /*
     public Node delete(Integer value) {
